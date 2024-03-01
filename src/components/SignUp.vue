@@ -3,20 +3,44 @@
     <h1>Sign Up</h1>
     <form>
   <div class="mb-3">
-    <input type="text" class="form-control" id="name" placeholder="Enter Your Name" >
+    <input type="text" v-model="name" class="form-control" id="name" placeholder="Enter Your Name" >
   </div>
   <div class="mb-3">
-    <input type="email" class="form-control" id="email" placeholder="Enter Your Email">
+    <input type="email" v-model="email" class="form-control" id="email" placeholder="Enter Your Email">
   </div>
   <div class="mb-3">
-    <input type="password" class="form-control" id="password" placeholder="Enter Your Password">
+    <input type="password" v-model="password" class="form-control" id="password" placeholder="Enter Your Password">
   </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <button type="submit" v-on:click="signUp" class="btn btn-primary">Submit</button>
 </form>
 </template>
 <script>
+    import axios from 'axios'
+
     export default {
-        name :'App'
+        name :'App',
+        data()
+        {
+            return {
+                name:'',
+                email:'',
+                password:''
+            }
+        },
+        methods:{
+            async signUp(){
+                let result = await axios.post("http://localhost:3000/users",{
+                    name:this.name,
+                    email:this.email,
+                    password:this.password
+                });
+                console.warn(result);
+                if(result.status==201){
+                    alert('done');
+                    localStorage.setItem("user-info", JSON.stringify(result.data))
+                }
+            }
+        }
     }
 </script>
 
