@@ -11,7 +11,8 @@
   <div class="mb-3">
     <input type="password" v-model="password" class="form-control" id="password" placeholder="Enter Your Password Here">
   </div>
-  <button type="submit" v-on:click="signUp" class="btn btn-primary">Submit</button>
+  <button type="submit" v-on:click="signUp" class="btn btn-primary">Sign Up</button>
+  <router-link to="/log-in">Log In</router-link>
 </form>
 </template>
 <script>
