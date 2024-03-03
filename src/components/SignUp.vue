@@ -36,9 +36,15 @@
                 });
                 console.warn(result);
                 if(result.status==201){
-                    alert('Added');
-                    localStorage.setItem("user-info", JSON.stringify(result.data))
+                    localStorage.setItem("user-info", JSON.stringify(result.data));
+                    this.$router.push('/')
                 }
+            }
+        },
+        mounted(){
+            let user=localStorage.getItem('user-info')
+            if(user){
+                this.$router.push('/')
             }
         }
     }
