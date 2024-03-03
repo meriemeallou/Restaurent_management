@@ -19,7 +19,7 @@
     import axios from 'axios'
 
     export default {
-        name :'App',
+        name :'SignUp',
         data()
         {
             return {
@@ -30,6 +30,10 @@
         },
         methods:{
             async signUp(){
+                if (!this.name || !this.email || !this.password) {
+                alert('Please fill in all champs.');
+            return;
+        }
                 let result = await axios.post("http://localhost:3000/users",{
                     name:this.name,
                     email:this.email,
@@ -44,9 +48,7 @@
         },
         mounted(){
             let user=localStorage.getItem('user-info')
-            if(user){
-                this.$router.push('/')
-            }
+            console.log(user)
         }
     }
 </script>
