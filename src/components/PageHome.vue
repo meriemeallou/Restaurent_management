@@ -13,9 +13,12 @@
     <tr v-for="item in restaurents" :key="item.id">
       <td>{{item.name}}</td>
       <td>{{item.adress}}</td>
+      <td>
       <button type="submit" class="btn btn-primary">
         <router-link :to="'/updater'+item.id" class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover">Update</router-link>
       </button>
+      <button class="btn btn-danger" v-on:click="deleteR(item.id)">Delete</button>
+    </td>
     </tr>
   </tbody>
 </table>
@@ -34,10 +37,22 @@ export default {
     components:{
         HeaderFile,
     },
+    methods:{
+        async deleteR(id){
+          let result= await axios.delete('http://localhost:3000/restaurents/'+id)
+          if(result.status===200)
+          {
+            this.loadDate()
+          }
+        },
+        async loadDate(){
+          let result= await axios.get('http://localhost:3000/restaurents')
+          console.log(result)
+          this.restaurents=result.data;
+        }
+    },
    async mounted(){
-      let result= await axios.get('http://localhost:3000/restaurents')
-      console.log(result)
-      this.restaurents=result.data;
+      this.loadDate()
     }
 }
 </script>
