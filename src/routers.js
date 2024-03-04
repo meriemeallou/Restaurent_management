@@ -12,27 +12,32 @@ const routes = [
         name: 'PageHome',
         component: PageHome,
         path: '/',
+        // meta: { requiresAuth: true }
     },
     {
         name: 'SignUp',
         component: SignUp,
         path: '/sign-up',
+        // meta: { requiresAuth: false }
     },
     {
         name: 'PageLogin',
         component: PageLogin,
         path: '/log-in',
+        // meta: { requiresAuth: false }
     }
     ,
     {
         name: 'AddR',
         component: AddR,
         path: '/addr',
+        // meta: { requiresAuth: true }
     },
     {
         name: 'UpdateR',
         component: UpdateR,
-        path: '/updater',
+        path: '/updater:id',
+        // meta: { requiresAuth: true }
     }
 ];
 
