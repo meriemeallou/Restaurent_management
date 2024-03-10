@@ -42,7 +42,7 @@ export default {
           let result= await axios.delete('http://localhost:3000/restaurents/'+id)
           if(result.status===200)
           {
-            this.loadDate()
+            this.loadData()
           }
         },
         async loadDate(){
