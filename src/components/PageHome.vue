@@ -45,14 +45,14 @@ export default {
             this.loadData()
           }
         },
-        async loadDate(){
+        async loadData(){
           let result= await axios.get('http://localhost:3000/restaurents')
           console.log(result)
           this.restaurents=result.data;
         }
     },
    async mounted(){
-      this.loadDate()
+      this.loadData()
     }
 }
 </script>
